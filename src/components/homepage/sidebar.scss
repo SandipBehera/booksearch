@@ -1,0 +1,58 @@
+.menu {
+    background: #f1f2f4;
+    height: 100vh;
+    width: 250px;
+    opacity:0; 
+    positon: absolute;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    transform: translateX(-50%);
+  
+    a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 20px;
+    }
+  
+    ul {
+      padding: 0;
+      margin: 0;
+  
+      li {
+        font-size: 16px;
+        border-bottom: 1px solid #fff;
+        transition: all 0.25s ease;
+        animation: fadeInRight .25s ease forwards;
+        opacity:0;
+  
+        &:hover {
+          opacity: 0.8;
+          transition: all 0.25s ease;
+          background: #000;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .nomenu{
+    height: 0;
+    width: 0;
+  }
+  .active {
+    opacity:1;
+    visibility: visible;
+    transition: all 0.25s ease;
+    transform: translateX(0);
+  }
+  
+  @-webkit-keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      left: 20%;
+    }
+    100% {
+      opacity: 1;
+      left: 0;
+    }
+  }

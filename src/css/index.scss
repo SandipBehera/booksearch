@@ -1,0 +1,119 @@
+body{
+  margin: 0;
+  font-family: poppins,sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.86;
+  text-align: left;
+  padding-top: 75px;
+  // background: rgb(2,0,36);
+  // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  }
+  .form-search{
+    margin: 0 auto;
+    text-align: center;
+
+    font: bold 13px sans-serif;
+     max-width: 100%;
+    position: relative;
+}
+
+.form-search input{
+    width: 60%;
+    box-sizing: border-box;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    background-color:  #ffffff;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 15px 14px 40px;
+    border: 1px solid #b6c3cd;;
+    border-right: 0;
+    color:#4E565C;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.form-search button{
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color:  #6caee0;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    color: #ffffff;
+    padding: 15px 22px;
+    margin-left: -4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.form-search i{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 16px;
+    color: #80A3BD;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.imgcs{
+  padding-left: 0;
+  width: 50%;
+  margin: 0 23%;
+  background-color: transparent !important;
+}
+@media screen and (max-width:720px) {
+  .imgcs{
+    padding-left: 0;
+    width: 50%;
+    margin: 0 23%;
+    background-color: transparent !important;
+  }
+}
+.imgs{
+  padding-left: 0;
+  width: 30%;
+  margin: 0 23%;
+  background-color: transparent !important;
+}
+@media screen and (max-width:720px) {
+  .imgs{
+    padding-left: 0;
+    width: 30%;
+    margin: 0 23%;
+    background-color: transparent !important;
+  }
+}
+.hover-change-image{
+  background-color: transparent !important;
+}
+.pt-3{
+  padding-top: 1rem !important;
+}
+.px-0{
+  padding-right: 0 !important;
+}
+.pb-1{
+  padding-bottom: 0.3125rem !important;
+}
+.fs16{
+  font-size: 16px;
+}
+.mb-1{
+  margin-bottom: 0.3215rem !important;
+}
+.work-line{
+  font-style: oblique;
+  color: #666 !important;
+}
+.bor{
+  border: 1px solid;
+}
+.fs-10{
+  font-size: 13px !important;
+  text-align: left;
+}
+.pl-4{
+  margin: 0 23%;
+}
