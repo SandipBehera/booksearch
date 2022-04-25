@@ -1,24 +1,25 @@
 import axios from "axios";
 import React, { useState } from "react";
 import ErrorBoundary from "../../error-handling/ErrorBoundary";
+import Loading from "../loading/loading";
 import Pagination from "../pagination/paginate";
 import Authorbooks from "./Authorbooks";
 import "./sidebar.scss";
 
-function Allbook({ search, searchResults, loading, x }) {
+function Allbook({ search, searchResults, loading, allData }) {
     let gdata = [];
     const [colsize, setColsize] = useState('col-md-12');
-    const [showsiebar, setshowsidebar] = useState("open");
+    const [showsiebar, setshowsidebar] = useState(false);
     const [styl, setStyle] = useState("menu");
     const [authorname, SetAuthorname] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
     if (loading) {
-        return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+        return <Loading></Loading>;
     }
     //check if any search key are entred or not
     if (search.length < 1) {
-        gdata = x;
+        gdata = allData;
     }
     else {
         gdata = searchResults;
@@ -30,13 +31,15 @@ function Allbook({ search, searchResults, loading, x }) {
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    
+    //execute the function on the child component
+    const showbar=()=>{
+        setshowsidebar(false);
+        SetAuthorname("");
+    }
     //show or hide authors sidebar by clicking on the Author name in the list
     const sidebar = (author) => {
-
-        switch (showsiebar) {
-            case "open":
-                setshowsidebar("close");
+                if(showsiebar===false){
+                setshowsidebar(true);
                 setStyle("menu active");
                 const fetchPosts = async () => {
                     const res = await axios.get('https://openlibrary.org/search/authors.json?q=' + author);
@@ -44,25 +47,26 @@ function Allbook({ search, searchResults, loading, x }) {
                 };
 
                 fetchPosts();
-                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("mySidenav").style.width = "300px";
                 document.getElementById("main").style.marginLeft = "250px";
-                break;
-            case "close":
-                setshowsidebar("open");
+            }
+            else{
+                setshowsidebar(false);
                 setStyle("nomenu");
                 SetAuthorname("");
                 document.getElementById("mySidenav").style.width = "0px";
-                document.getElementById("main").style.marginLeft = "0px";
-                break;
+                document.getElementById("main").style.marginLeft = "15%";
+            
+        
         }
     }
     console.log(authorname);
     return (
         <div className="container">
-            <div id="mySidenav" class="sidenav">
+            <div id="mySidenav" className="sidenav">
                 <ErrorBoundary>
                     {authorname != "" ? (
-                        <Authorbooks authorname={authorname} impstyle={styl}></Authorbooks>
+                        <Authorbooks authorname={authorname} impstyle={styl} showsiebar={()=>showbar()}></Authorbooks>
                     ) : (
                         <div>
                             &nbsp;
@@ -72,7 +76,7 @@ function Allbook({ search, searchResults, loading, x }) {
 
                 </ErrorBoundary>
             </div>
-            <div id="main">
+            <div id="main" style={{marginLeft:"12%"}}>
 
                 <ul className="list">
                     {currentPosts.map((item, i) => {

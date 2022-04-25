@@ -6,6 +6,8 @@ import ErrorBoundary from './error-handling/ErrorBoundary';
 import { useEffect, useState } from 'react';
 import Allbook from './components/homepage/allbook';
 import axios from 'axios';
+import Loading from './components/loading/loading';
+import Background from './background';
 
 function App() {
 	const [data, setData] = useState("");
@@ -27,7 +29,7 @@ function App() {
 	}, []);
 
 	if (loading) {
-		return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+		return <Loading></Loading>;
 	}
 
 	if (error) {
@@ -37,27 +39,9 @@ function App() {
 	if (!data.docs) {
 		return null;
 	}
-
-	let x = data.docs;
-	let y = data.docs;
 	//for the on page search 
 	const searchHandler = (search) => {
 		setSearch(search);
-		setSearchResults();
-		if (search !== "") {
-			const newBooksList = y.filter((i) => {
-				return Object.values(i)
-					.join(" ")
-					.toLowerCase()
-					.includes(search.toLowerCase());
-			});
-
-			setSearchResults(newBooksList);
-		}
-		else {
-			setSearchResults(y);
-		}
-
 	};
 
 	//when an search entry is not found on the on page search user can do search by clicking on the submit button.
@@ -74,11 +58,15 @@ function App() {
 	}
 
 	return (
-		<div className="container">
-			<Search term={search} searchKeyword={searchHandler} onsubmit={onsubmit} />
-			<ErrorBoundary>
-				<Allbook search={search} searchResults={searchResults} x={x}></Allbook>
-			</ErrorBoundary>
+
+		<div>
+			 <div class="context">
+				<Search term={search} searchKeyword={searchHandler} onsubmit={onsubmit} />
+				<ErrorBoundary>
+					<Allbook search={search} searchResults={searchResults} allData={data.docs}></Allbook>
+				</ErrorBoundary>
+				</div>
+			<Background></Background>
 		</div>
 	);
 }

@@ -13,7 +13,7 @@ function Search({ term, searchKeyword,onsubmit }) {
 		onsubmit();
 	}
 	return (
-		<div className="center">
+		<div className="center" style={{marginTop:"1%"}}>
 			<form onSubmit={searchSubmit}>
 			<input
 				className="input-field"
